@@ -1,0 +1,273 @@
+1.    select * from countries;
++------------+--------------------------+-----------+
+| COUNTRY_ID | COUNTRY_NAME             | REGION_ID |
++------------+--------------------------+-----------+
+| AR         | Argentina                | 2         |
+| AU         | Australia                | 3         |
+| BE         | Belgium                  | 1         |
+| BR         | Brazil                   | 2         |
+| CA         | Canada                   | 2         |
+| CH         | Switzerland              | 1         |
+| CN         | China                    | 3         |
+| DE         | Germany                  | 1         |
+| DK         | Denmark                  | 1         |
+| EG         | Egypt                    | 4         |
+| FR         | France                   | 1         |
+| IL         | Israel                   | 4         |
+| IN         | India                    | 3         |
+| IT         | Italy                    | 1         |
+| JP         | Japan                    | 3         |
+| KW         | Kuwait                   | 4         |
+| ML         | Malaysia                 | 3         |
+| MX         | Mexico                   | 2         |
+| NG         | Nigeria                  | 4         |
+| NL         | Netherlands              | 1         |
+| SG         | Singapore                | 3         |
+| UK         | United Kingdom           | 1         |
+| US         | United States of America | 2         |
+| ZM         | Zambia                   | 4         |
+| ZW         | Zimbabwe                 | 4         |
++------------+--------------------------+-----------+
+25 rows in set (0.00 sec)
+
+
+
+ 2.    select * from regions;
++-----------+------------------------+
+| REGION_ID | REGION_NAME            |
++-----------+------------------------+
+| 1         | Europe                 |
+| 2         | Americas               |
+| 3         | Asia                   |
+| 4         | Middle East and Africa |
++-----------+------------------------+
+4 rows in set (0.00 sec)
+
+           select distinct  REGION_ID from countries;
++-----------+
+| REGION_ID |
++-----------+
+| 2         |
+| 3         |
+| 1         |
+| 4         |
++-----------+
+4 rows in set (0.00 sec)
+
+
+3.   select REGION_ID from countries where  REGION_ID >=2 and  REGION_ID<=3;
++-----------+
+| REGION_ID |
++-----------+
+| 2         |
+| 3         |
+| 2         |
+| 2         |
+| 3         |
+| 3         |
+| 3         |
+| 3         |
+| 2         |
+| 3         |
+| 2         |
++-----------+
+11 rows in set (0.00 sec)
+
+
+4.    select REGION_ID from countries  where  REGION_ID >=2 and  REGION_ID<=3 order by  REGION_ID desc ;
++-----------+
+| REGION_ID |
++-----------+
+| 3         |
+| 3         |
+| 3         |
+| 3         |
+| 3         |
+| 3         |
+| 2         |
+| 2         |
+| 2         |
+| 2         |
+| 2         |
++-----------+
+11 rows in set (0.00 sec)
+
+
+ 5.   select REGION_ID from countries order by REGION_ID limit 6,10;
++-----------+
+| REGION_ID |
++-----------+
+| 1         |
+| 1         |
+| 2         |
+| 2         |
+| 2         |
+| 2         |
+| 2         |
+| 3         |
+| 3         |
+| 3         |
++-----------+
+10 rows in set (0.00 sec)
+
+
+6.   select  sum( REGION_ID) from countries ;
++-----------------+
+| sum( REGION_ID) |
++-----------------+
+|              60 |
++-----------------+
+1 row in set (0.00 sec)
+
+
+7.   select  sum( REGION_ID) from countries group by REGION_ID;
++-----------------+
+| sum( REGION_ID) |
++-----------------+
+|              10 |
+|              18 |
+|               8 |
+|              24 |
++-----------------+
+4 rows in set (0.00 sec)
+
+
+
+8.    select REGION_ID from countries  where  REGION_ID >=2 and  REGION_ID<=3 order by  REGION_ID desc limit 4,6;
++-----------+
+| REGION_ID |
++-----------+
+| 3         |
+| 3         |
+| 2         |
+| 2         |
+| 2         |
+| 2         |
++-----------+
+6 rows in set (0.00 sec)
+
+
+9.    select max(REGION_ID) from countries;
++----------------+
+| max(REGION_ID) |
++----------------+
+| 4              |
++----------------+
+1 row in set (0.00 sec)
+
+
+10.   select count(REGION_ID) from countries  where  REGION_ID >=2 group by REGION_ID;
++------------------+
+| count(REGION_ID) |
++------------------+
+|                5 |
+|                6 |
+|                6 |
++------------------+
+3 rows in set (0.00 sec)
+
+
+11.     select REGION_ID ,count(REGION_ID) from countries group by REGION_ID;
++-----------+------------------+
+| REGION_ID | count(REGION_ID) |
++-----------+------------------+
+| 2         |                5 |
+| 3         |                6 |
+| 1         |                8 |
+| 4         |                6 |
++-----------+------------------+
+4 rows in set (0.00 sec)
+
+
+12.     select REGION_ID ,count(REGION_ID) from countries  where  REGION_ID >=2  group by REGION_ID;
++-----------+------------------+
+| REGION_ID | count(REGION_ID) |
++-----------+------------------+
+| 2         |                5 |
+| 3         |                6 |
+| 4         |                6 |
++-----------+------------------+
+3 rows in set (0.00 sec)
+
+
+13.     select * from  countries left join regions on
+    -> countries.REGION_ID=regions.REGION_ID;
++------------+--------------------------+-----------+-----------+------------------------+
+| COUNTRY_ID | COUNTRY_NAME             | REGION_ID | REGION_ID | REGION_NAME            |
++------------+--------------------------+-----------+-----------+------------------------+
+| BE         | Belgium                  | 1         | 1         | Europe                 |
+| CH         | Switzerland              | 1         | 1         | Europe                 |
+| DE         | Germany                  | 1         | 1         | Europe                 |
+| DK         | Denmark                  | 1         | 1         | Europe                 |
+| FR         | France                   | 1         | 1         | Europe                 |
+| IT         | Italy                    | 1         | 1         | Europe                 |
+| NL         | Netherlands              | 1         | 1         | Europe                 |
+| UK         | United Kingdom           | 1         | 1         | Europe                 |
+| AR         | Argentina                | 2         | 2         | Americas               |
+| BR         | Brazil                   | 2         | 2         | Americas               |
+| CA         | Canada                   | 2         | 2         | Americas               |
+| MX         | Mexico                   | 2         | 2         | Americas               |
+| US         | United States of America | 2         | 2         | Americas               |
+| AU         | Australia                | 3         | 3         | Asia                   |
+| CN         | China                    | 3         | 3         | Asia                   |
+| IN         | India                    | 3         | 3         | Asia                   |
+| JP         | Japan                    | 3         | 3         | Asia                   |
+| ML         | Malaysia                 | 3         | 3         | Asia                   |
+| SG         | Singapore                | 3         | 3         | Asia                   |
+| EG         | Egypt                    | 4         | 4         | Middle East and Africa |
+| IL         | Israel                   | 4         | 4         | Middle East and Africa |
+| KW         | Kuwait                   | 4         | 4         | Middle East and Africa |
+| NG         | Nigeria                  | 4         | 4         | Middle East and Africa |
+| ZM         | Zambia                   | 4         | 4         | Middle East and Africa |
+| ZW         | Zimbabwe                 | 4         | 4         | Middle East and Africa |
++------------+--------------------------+-----------+-----------+------------------------+
+25 rows in set (0.00 sec)
+
+
+14.      select * from  countries where countries. REGION_ID in
+    -> (select  REGION_ID from regions where  REGION_ID=3);
++------------+--------------+-----------+
+| COUNTRY_ID | COUNTRY_NAME | REGION_ID |
++------------+--------------+-----------+
+| AU         | Australia    | 3         |
+| CN         | China        | 3         |
+| IN         | India        | 3         |
+| JP         | Japan        | 3         |
+| ML         | Malaysia     | 3         |
+| SG         | Singapore    | 3         |
++------------+--------------+-----------+
+6 rows in set (0.01 sec)
+
+
+
+15.     select * from  countries where exists(select * from regions);
++------------+--------------------------+-----------+
+| COUNTRY_ID | COUNTRY_NAME             | REGION_ID |
++------------+--------------------------+-----------+
+| AR         | Argentina                | 2         |
+| AU         | Australia                | 3         |
+| BE         | Belgium                  | 1         |
+| BR         | Brazil                   | 2         |
+| CA         | Canada                   | 2         |
+| CH         | Switzerland              | 1         |
+| CN         | China                    | 3         |
+| DE         | Germany                  | 1         |
+| DK         | Denmark                  | 1         |
+| EG         | Egypt                    | 4         |
+| FR         | France                   | 1         |
+| IL         | Israel                   | 4         |
+| IN         | India                    | 3         |
+| IT         | Italy                    | 1         |
+| JP         | Japan                    | 3         |
+| KW         | Kuwait                   | 4         |
+| ML         | Malaysia                 | 3         |
+| MX         | Mexico                   | 2         |
+| NG         | Nigeria                  | 4         |
+| NL         | Netherlands              | 1         |
+| SG         | Singapore                | 3         |
+| UK         | United Kingdom           | 1         |
+| US         | United States of America | 2         |
+| ZM         | Zambia                   | 4         |
+| ZW         | Zimbabwe                 | 4         |
++------------+--------------------------+-----------+
+25 rows in set (0.00 sec)

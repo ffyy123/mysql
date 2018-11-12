@@ -1,0 +1,52 @@
+       select * from moves;
++-------+---------+------+---------+
+| name  | direct  | year | pingfen |
++-------+---------+------+---------+
+| qwer  | jdiajda | 2001 |       9 |
+| qjir  | kohsda  | 2009 |       9 |
+| poiup | koddssa | 2010 |      10 |
+| mgds  | lkdmn   | 2009 |       9 |
+| bnvc  | ldsxc   | 2015 |       8 |
+| mfdcx | lgfds   | 2016 |       9 |
+| qjir  | fdsxc   | 2017 |       8 |
++-------+---------+------+---------+
+7 rows in set (0.00 sec)
+
+1.     select * from  moves where name like 'q%';
++------+---------+------+---------+
+| name | direct  | year | pingfen |
++------+---------+------+---------+
+| qwer | jdiajda | 2001 |       9 |
+| qjir | kohsda  | 2009 |       9 |
+| qjir | fdsxc   | 2017 |       8 |
++------+---------+------+---------+
+3 rows in set (0.00 sec)
+
+2.     select * from  moves where direct like '%a%';
++-------+---------+------+---------+
+| name  | direct  | year | pingfen |
++-------+---------+------+---------+
+| qwer  | jdiajda | 2001 |       9 |
+| qjir  | kohsda  | 2009 |       9 |
+| poiup | koddssa | 2010 |      10 |
++-------+---------+------+---------+
+3 rows in set (0.00 sec)
+
+ 3.    select * from  moves where (year=2015);
++------+--------+------+---------+
+| name | direct | year | pingfen |
++------+--------+------+---------+
+| bnvc | ldsxc  | 2015 |       8 |
++------+--------+------+---------+
+1 row in set (0.00 sec)
+
+ 4.    select * from  moves where (pingfen=9);
++-------+---------+------+---------+
+| name  | direct  | year | pingfen |
++-------+---------+------+---------+
+| qwer  | jdiajda | 2001 |       9 |
+| qjir  | kohsda  | 2009 |       9 |
+| mgds  | lkdmn   | 2009 |       9 |
+| mfdcx | lgfds   | 2016 |       9 |
++-------+---------+------+---------+
+4 rows in set (0.00 sec)
